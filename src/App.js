@@ -6,8 +6,10 @@ class App extends Component {
 		persons: [{ name: 'Shivam', age: 22 }],
 		showPersons: false
 	};
-	switchNameHandler = (newName, age) => {
-		this.setState({ persons: [{ name: newName, age: age }] });
+	deletePersonHandler = index => {
+		const persons = this.state.persons;
+		persons.splice(index, 1);
+		this.setState({ persons: persons });
 	};
 	nameChangeHandler = event => {
 		this.setState({ persons: [{ name: event.target.value, age: 22 }] });
@@ -17,22 +19,28 @@ class App extends Component {
 		this.setState({ showPersons: !doesShow });
 	};
 	render() {
+		// everytime react needs to update DOM render() is invoked
+		let persons = null;
+		if (this.state.showPersons) {
+			persons = (
+				<div>
+					{this.state.persons.map((person, index) => {
+						return (
+							<Person
+								name={person.name}
+								age={person.age}
+								click={this.deletePersonHandler.bind(this, index)}
+							/>
+						);
+					})}
+				</div>
+			);
+		}
 		return (
 			<div className="App">
 				<h1>I am a react App</h1>
 				<button onClick={this.togglePersonHandler}>Toggle Person</button>
-				<div>
-					{this.state.showPersons ? (
-						<Person
-							name={this.state.persons[0].name}
-							age={this.state.persons[0].age}
-							click={this.switchNameHandler}
-							change={this.nameChangeHandler}
-						>
-							My Hobbies is playing.
-						</Person>
-					) : null}
-				</div>
+				{persons}
 			</div>
 			// React.createElement(
 			// 	'div',
