@@ -3,16 +3,23 @@ import './App.css';
 import Person from './Person/Person';
 class App extends Component {
 	state = {
-		persons: [{ name: 'Shivam', age: 22 }],
+		persons: [{ name: 'Shivam', age: 22, id: 'asdxz21' }],
 		showPersons: false
 	};
 	deletePersonHandler = index => {
-		const persons = this.state.persons;
+		const persons = [...this.state.persons];
 		persons.splice(index, 1);
 		this.setState({ persons: persons });
 	};
-	nameChangeHandler = event => {
-		this.setState({ persons: [{ name: event.target.value, age: 22 }] });
+	nameChangeHandler = (event, id) => {
+		const pIndex = this.state.persons.findIndex(p => p.id === id);
+		const person = {
+			...this.state.persons[pIndex]
+		};
+		person.name = event.target.value;
+		const persons = [...this.state.persons];
+		persons[pIndex] = person;
+		this.setState({ persons: persons });
 	};
 	togglePersonHandler = () => {
 		const doesShow = this.state.showPersons;
@@ -30,6 +37,10 @@ class App extends Component {
 								name={person.name}
 								age={person.age}
 								click={this.deletePersonHandler.bind(this, index)}
+								key={person.id}
+								change={event => {
+									this.nameChangeHandler(event, person.id);
+								}}
 							/>
 						);
 					})}
