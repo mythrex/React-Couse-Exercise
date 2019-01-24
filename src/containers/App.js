@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import Persons from '../components/Persons/Persons';
-
+import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
 	state = {
 		persons: [{ name: 'Shivam', age: 22, id: 'asdxz21' }],
@@ -29,59 +29,25 @@ class App extends Component {
 	render() {
 		// everytime react needs to update DOM render() is invoked
 		let persons = null;
-		let classes = [];
-		const style = {
-			backgroundColor: 'green',
-			border: '2px solid black',
-			color: 'white',
-			':hover': {
-				backgroundColor: 'cyan',
-				color: 'black'
-			}
-		};
-		if (this.state.persons.length <= 2) {
-			classes.push(styles.red);
-			if (this.state.persons.length <= 1) {
-				classes.push(styles.bold);
-			}
-		}
+
 		if (this.state.showPersons) {
 			persons = (
-				<div>
-					{this.state.persons.map((person, index) => {
-						return (
-							<Person
-								name={person.name}
-								age={person.age}
-								click={this.deletePersonHandler.bind(this, index)}
-								key={person.id}
-								change={event => {
-									this.nameChangeHandler(event, person.id);
-								}}
-							/>
-						);
-					})}
-				</div>
+				<Persons
+					persons={this.state.persons}
+					click={this.deletePersonHandler}
+					change={this.nameChangeHandler}
+				/>
 			);
-			style.backgroundColor = 'red';
-			style[':hover'] = {
-				color: 'white',
-				backgroundColor: 'salmon'
-			};
 		}
 		return (
 			<div className={styles.App}>
-				<h1 className={classes.join(' ')}>I am a react App</h1>
-				<button onClick={this.togglePersonHandler} style={style}>
-					Toggle Person
-				</button>
+				<Cockpit
+					persons={this.state.persons}
+					showPersons={this.state.showPersons}
+					click={this.togglePersonHandler}
+				/>
 				{persons}
 			</div>
-			// React.createElement(
-			// 	'div',
-			// 	{ className: 'App' },
-			// 	React.createElement('h1', null, 'I am a react app!')
-			// )
 		);
 	}
 }
