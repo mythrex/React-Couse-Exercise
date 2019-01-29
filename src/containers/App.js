@@ -3,8 +3,24 @@ import styles from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
+	constructor(props) {
+		super(props);
+		console.log('[App.js] Hello bitch!', props);
+	}
+
+	componentWillMount() {
+		console.log('[App.js] Inside componentWillMount');
+	}
+
+	componentDidMount() {
+		console.log('[App.js] Inside componentDidMount');
+	}
+
 	state = {
-		persons: [{ name: 'Shivam', age: 22, id: 'asdxz21' }],
+		persons: [
+			{ name: 'Shivam', age: 22, id: 'asdxz21' },
+			{ name: 'AC', age: 2, id: 'asdxz2' }
+		],
 		showPersons: false
 	};
 	deletePersonHandler = index => {
@@ -27,6 +43,7 @@ class App extends Component {
 		this.setState({ showPersons: !doesShow });
 	};
 	render() {
+		console.log('[App.js] Inside render');
 		// everytime react needs to update DOM render() is invoked
 		let persons = null;
 

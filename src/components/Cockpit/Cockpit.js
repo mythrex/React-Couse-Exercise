@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Cockpit.css';
 
-console.log(styles);
 const Cockpit = props => {
 	let classes = [];
 	let btnClass = '';
