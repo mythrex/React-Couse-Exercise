@@ -29,7 +29,13 @@ class Persons extends Component {
 			nextProps,
 			nextState
 		);
-		return true;
+		return (
+			// true means re render
+			// false means do not re rendeer
+			nextProps.persons !== this.props.persons ||
+			nextProps.showPersons !== this.props.showPersons ||
+			nextProps.click !== this.props.click
+		);
 	}
 
 	componentWillUpdate(nextProps, nextState) {

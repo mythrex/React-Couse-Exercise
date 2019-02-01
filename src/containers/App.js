@@ -16,6 +16,26 @@ class App extends Component {
 		console.log('[App.js] Inside componentDidMount');
 	}
 
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		console.log(
+			'[Update App.js.js] Inside shouldComponentUpdate',
+			nextProps,
+			nextState
+		);
+		return true;
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+		console.log(
+			'[Update App.js.js] Inside componentWillUpdate',
+			nextProps,
+			nextState
+		);
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		console.log('[Update App.js.js] Inside componentDidUpdate');
+	}
 	state = {
 		persons: [
 			{ name: 'Shivam', age: 22, id: 'asdxz21' },
@@ -58,6 +78,13 @@ class App extends Component {
 		}
 		return (
 			<div className={styles.App}>
+				<button
+					onClick={() => {
+						this.setState({ showPersons: true });
+					}}
+				>
+					Show
+				</button>
 				<Cockpit
 					persons={this.state.persons}
 					showPersons={this.state.showPersons}
