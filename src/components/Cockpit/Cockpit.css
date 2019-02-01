@@ -6,24 +6,24 @@
     color: red;
 }
 
-.Cockpit button {
+.Button {
     background-color: green;
     border: 2px solid black;
     color: white;
 }
 
-.Cockpit button:hover {
+.Button:hover {
     background-color: cyan;
     color: 'black';
 }
 
-.Cockpit button.Red {
+.Button.Red {
     background-color: red;
     border: 2px solid black;
     color: white;
 }
 
-.Cockpit button.Red:hover {
+.Button.Red:hover {
     background-color: salmon;
     color: 'black';
 }
