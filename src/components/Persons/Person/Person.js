@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 class Person extends Component {
 	state = {};
 	constructor(props) {
@@ -31,4 +33,10 @@ class Person extends Component {
 	}
 }
 
+Person.propTypes = {
+	click: PropTypes.func,
+	name: PropTypes.string,
+	age: PropTypes.number,
+	change: PropTypes.func
+};
 export default Person;
