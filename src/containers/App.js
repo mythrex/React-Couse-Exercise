@@ -44,7 +44,8 @@ class App extends Component {
 			{ name: 'Shivam', age: 22, id: 'asdxz21' },
 			{ name: 'AC', age: 2, id: 'asdxz2' }
 		],
-		showPersons: false
+		showPersons: false,
+		changeCounter: 1
 	};
 	deletePersonHandler = index => {
 		const persons = [...this.state.persons];
@@ -59,7 +60,16 @@ class App extends Component {
 		person.name = event.target.value;
 		const persons = [...this.state.persons];
 		persons[pIndex] = person;
-		this.setState({ persons: persons });
+
+		// this is wrong way to update state
+		// this is not guaranteed to have latest state
+		// this.setState expects an object and a function(if oldstate is req)
+		this.setState((prevState, props) => {
+			return {
+				persons: persons,
+				changeCounter: prevState.changeCounter + 1
+			};
+		});
 	};
 	togglePersonHandler = () => {
 		const doesShow = this.state.showPersons;
