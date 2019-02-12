@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+// import Aux from '../../../hoc/Aux';
 class Person extends Component {
 	state = {};
 	constructor(props) {
@@ -24,7 +24,7 @@ class Person extends Component {
 	render() {
 		console.log('[Person.js] Inside render');
 		return (
-			<div>
+			<React.Fragment>
 				<p onClick={this.props.click}>
 					I am {this.props.name} and I am {this.props.age} years old.
 				</p>
@@ -35,7 +35,7 @@ class Person extends Component {
 					onChange={this.props.change}
 					value={this.props.name}
 				/>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
