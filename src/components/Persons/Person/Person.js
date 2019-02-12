@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import Aux from '../../../hoc/Aux';
+import withClass from '../../../hoc/withClass';
 class Person extends Component {
 	state = {};
 	constructor(props) {
@@ -46,4 +47,4 @@ Person.propTypes = {
 	age: PropTypes.number,
 	change: PropTypes.func
 };
-export default Person;
+export default withClass(Person);
