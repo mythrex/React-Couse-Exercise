@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from './Cockpit.css';
-import Aux from '../../hoc/Aux';
+// import Aux from '../../hoc/Aux';
 
 const Cockpit = props => {
+	// console.log(useEffect);
+	// useEffect(() => {
+	// 	console.log('[Cockpit.js] Use Effect.');
+	// });
 	let classes = [];
 	let btnClass = styles.Button;
 	if (props.showPersons) {
@@ -16,12 +20,12 @@ const Cockpit = props => {
 	}
 
 	return (
-		<Aux>
+		<div>
 			<h1 className={classes.join(' ')}>I am a react App</h1>
 			<button onClick={props.click} className={btnClass}>
 				Toggle Person
 			</button>
-		</Aux>
+		</div>
 	);
 };
 

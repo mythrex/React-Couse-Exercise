@@ -22,7 +22,6 @@ class Persons extends Component {
 			nextProps
 		);
 	}
-
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
 		console.log(
 			'[Update Persons.js] Inside shouldComponentUpdate',
@@ -46,14 +45,24 @@ class Persons extends Component {
 		);
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		console.log('[Update Persons.js] Inside componentDidUpdate');
+	// static getDerivedStateFromProps(nextProps, prevState) {
+	// 	console.log('[Persons.js] getDerivedStateFromProps', prevState);
+	// 	return prevState;
+	// }
+
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		console.log('[Persons.js] getSnapshotBeforeUpdate', prevProps, prevState);
+		return { message: 'Some Snapshot' };
+	}
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		console.log('[Update Persons.js] Inside componentDidUpdate', snapshot);
 	}
 	render() {
 		console.log('[Persons.js] Inside render');
 		return this.props.persons.map((person, index) => {
 			return (
 				<Person
+					position={index}
 					name={person.name}
 					age={person.age}
 					click={() => {

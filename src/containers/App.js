@@ -8,7 +8,7 @@ import Aux from '../hoc/Aux';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		console.log('[App.js] Hello bitch!', props);
+		console.log('[App.js] Constructor!', props);
 	}
 
 	componentWillMount() {
